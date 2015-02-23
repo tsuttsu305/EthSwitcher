@@ -30,36 +30,38 @@
             this.nicList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.macView = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.dns2View = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dns1view = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.gatewayView = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.maskView = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ipaddrView = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.settingList = new System.Windows.Forms.ListBox();
             this.addListBtn = new System.Windows.Forms.Button();
             this.setNowBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nameBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dns2Box = new System.Windows.Forms.TextBox();
+            this.dns1Box = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.gatewayBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.maskBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ipaddrBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.delBtn = new System.Windows.Forms.Button();
             this.addNowBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ipaddrBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.maskBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.gatewayBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dns1Box = new System.Windows.Forms.TextBox();
-            this.dns2Box = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.nameBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.ipaddrView = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.maskView = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.gatewayView = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.dns1view = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.dns2View = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.macView = new System.Windows.Forms.Label();
+            this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isConnectedAdapterOnly = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,19 +69,24 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 367);
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 432);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(468, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(546, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.設定ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(468, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(546, 26);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,13 +95,13 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(53, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(58, 22);
             this.toolStripMenuItem1.Text = "ファイル";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.exitToolStripMenuItem.Text = "終了";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -103,18 +110,18 @@
             this.nicList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nicList.FormattingEnabled = true;
-            this.nicList.Location = new System.Drawing.Point(105, 27);
+            this.nicList.Location = new System.Drawing.Point(122, 31);
             this.nicList.Name = "nicList";
-            this.nicList.Size = new System.Drawing.Size(351, 20);
+            this.nicList.Size = new System.Drawing.Size(409, 22);
             this.nicList.TabIndex = 2;
             this.nicList.SelectedIndexChanged += new System.EventHandler(this.nicList_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 30);
+            this.label1.Location = new System.Drawing.Point(14, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 12);
+            this.label1.Size = new System.Drawing.Size(102, 14);
             this.label1.TabIndex = 3;
             this.label1.Text = "NetworkAdapter";
             // 
@@ -134,12 +141,120 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.ipaddrView);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(14, 53);
+            this.groupBox1.Location = new System.Drawing.Point(16, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(442, 101);
+            this.groupBox1.Size = new System.Drawing.Size(516, 118);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NowSetting";
+            // 
+            // macView
+            // 
+            this.macView.AutoSize = true;
+            this.macView.Location = new System.Drawing.Point(352, 79);
+            this.macView.Name = "macView";
+            this.macView.Size = new System.Drawing.Size(118, 14);
+            this.macView.TabIndex = 11;
+            this.macView.Text = "FF:FF:FF:FF:FF:FF";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(313, 79);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(34, 14);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "Mac:";
+            // 
+            // dns2View
+            // 
+            this.dns2View.AutoSize = true;
+            this.dns2View.Location = new System.Drawing.Point(352, 54);
+            this.dns2View.Name = "dns2View";
+            this.dns2View.Size = new System.Drawing.Size(100, 14);
+            this.dns2View.TabIndex = 9;
+            this.dns2View.Text = "255.255.255.255";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(303, 54);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(43, 14);
+            this.label16.TabIndex = 8;
+            this.label16.Text = "DNS2:";
+            // 
+            // dns1view
+            // 
+            this.dns1view.AutoSize = true;
+            this.dns1view.Location = new System.Drawing.Point(352, 28);
+            this.dns1view.Name = "dns1view";
+            this.dns1view.Size = new System.Drawing.Size(100, 14);
+            this.dns1view.TabIndex = 7;
+            this.dns1view.Text = "255.255.255.255";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(303, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(43, 14);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "DNS1:";
+            // 
+            // gatewayView
+            // 
+            this.gatewayView.AutoSize = true;
+            this.gatewayView.Location = new System.Drawing.Point(92, 79);
+            this.gatewayView.Name = "gatewayView";
+            this.gatewayView.Size = new System.Drawing.Size(100, 14);
+            this.gatewayView.TabIndex = 5;
+            this.gatewayView.Text = "255.255.255.255";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(26, 79);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 14);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Gateway:";
+            // 
+            // maskView
+            // 
+            this.maskView.AutoSize = true;
+            this.maskView.Location = new System.Drawing.Point(92, 54);
+            this.maskView.Name = "maskView";
+            this.maskView.Size = new System.Drawing.Size(100, 14);
+            this.maskView.TabIndex = 3;
+            this.maskView.Text = "255.255.255.255";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(5, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 14);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "SubnetMask:";
+            // 
+            // ipaddrView
+            // 
+            this.ipaddrView.AutoSize = true;
+            this.ipaddrView.Location = new System.Drawing.Point(92, 28);
+            this.ipaddrView.Name = "ipaddrView";
+            this.ipaddrView.Size = new System.Drawing.Size(100, 14);
+            this.ipaddrView.TabIndex = 1;
+            this.ipaddrView.Text = "255.255.255.255";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 14);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "IPAddress:";
             // 
             // settingList
             // 
@@ -147,19 +262,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingList.FormattingEnabled = true;
-            this.settingList.ItemHeight = 12;
-            this.settingList.Location = new System.Drawing.Point(14, 160);
+            this.settingList.ItemHeight = 14;
+            this.settingList.Location = new System.Drawing.Point(16, 187);
             this.settingList.Name = "settingList";
-            this.settingList.Size = new System.Drawing.Size(202, 160);
+            this.settingList.Size = new System.Drawing.Size(235, 186);
             this.settingList.TabIndex = 5;
             this.settingList.SelectedIndexChanged += new System.EventHandler(this.settingList_SelectedIndexChanged);
             // 
             // addListBtn
             // 
             this.addListBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addListBtn.Location = new System.Drawing.Point(72, 174);
+            this.addListBtn.Location = new System.Drawing.Point(84, 203);
             this.addListBtn.Name = "addListBtn";
-            this.addListBtn.Size = new System.Drawing.Size(75, 23);
+            this.addListBtn.Size = new System.Drawing.Size(87, 27);
             this.addListBtn.TabIndex = 6;
             this.addListBtn.Text = "Add List";
             this.addListBtn.UseVisualStyleBackColor = true;
@@ -168,9 +283,9 @@
             // setNowBtn
             // 
             this.setNowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.setNowBtn.Location = new System.Drawing.Point(153, 174);
+            this.setNowBtn.Location = new System.Drawing.Point(178, 203);
             this.setNowBtn.Name = "setNowBtn";
-            this.setNowBtn.Size = new System.Drawing.Size(75, 23);
+            this.setNowBtn.Size = new System.Drawing.Size(87, 27);
             this.setNowBtn.TabIndex = 7;
             this.setNowBtn.Text = "Set Now";
             this.setNowBtn.UseVisualStyleBackColor = true;
@@ -194,19 +309,127 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.addListBtn);
             this.groupBox2.Controls.Add(this.setNowBtn);
-            this.groupBox2.Location = new System.Drawing.Point(222, 160);
+            this.groupBox2.Location = new System.Drawing.Point(259, 187);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 204);
+            this.groupBox2.Size = new System.Drawing.Size(273, 238);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Setting";
             // 
+            // nameBox
+            // 
+            this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameBox.Location = new System.Drawing.Point(112, 174);
+            this.nameBox.Name = "nameBox";
+            this.nameBox.Size = new System.Drawing.Size(153, 21);
+            this.nameBox.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(65, 177);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 14);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Name";
+            // 
+            // dns2Box
+            // 
+            this.dns2Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dns2Box.Location = new System.Drawing.Point(112, 143);
+            this.dns2Box.Name = "dns2Box";
+            this.dns2Box.Size = new System.Drawing.Size(153, 21);
+            this.dns2Box.TabIndex = 17;
+            // 
+            // dns1Box
+            // 
+            this.dns1Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dns1Box.Location = new System.Drawing.Point(112, 114);
+            this.dns1Box.Name = "dns1Box";
+            this.dns1Box.Size = new System.Drawing.Size(153, 21);
+            this.dns1Box.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 147);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 14);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "DNS2";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 14);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "DNS1";
+            // 
+            // gatewayBox
+            // 
+            this.gatewayBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gatewayBox.Location = new System.Drawing.Point(112, 85);
+            this.gatewayBox.Name = "gatewayBox";
+            this.gatewayBox.Size = new System.Drawing.Size(153, 21);
+            this.gatewayBox.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 89);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 14);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "DefaultGateway";
+            // 
+            // maskBox
+            // 
+            this.maskBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskBox.Location = new System.Drawing.Point(112, 56);
+            this.maskBox.Name = "maskBox";
+            this.maskBox.Size = new System.Drawing.Size(153, 21);
+            this.maskBox.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 14);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "SubnetMask";
+            // 
+            // ipaddrBox
+            // 
+            this.ipaddrBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipaddrBox.Location = new System.Drawing.Point(112, 27);
+            this.ipaddrBox.Name = "ipaddrBox";
+            this.ipaddrBox.Size = new System.Drawing.Size(153, 21);
+            this.ipaddrBox.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 14);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "IPAddress";
+            // 
             // delBtn
             // 
             this.delBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.delBtn.Location = new System.Drawing.Point(132, 335);
+            this.delBtn.Location = new System.Drawing.Point(154, 391);
             this.delBtn.Name = "delBtn";
-            this.delBtn.Size = new System.Drawing.Size(75, 23);
+            this.delBtn.Size = new System.Drawing.Size(87, 27);
             this.delBtn.TabIndex = 9;
             this.delBtn.Text = "Del";
             this.delBtn.UseVisualStyleBackColor = true;
@@ -216,235 +439,35 @@
             // 
             this.addNowBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addNowBtn.Location = new System.Drawing.Point(14, 334);
+            this.addNowBtn.Location = new System.Drawing.Point(16, 390);
             this.addNowBtn.Name = "addNowBtn";
-            this.addNowBtn.Size = new System.Drawing.Size(112, 23);
+            this.addNowBtn.Size = new System.Drawing.Size(131, 27);
             this.addNowBtn.TabIndex = 10;
             this.addNowBtn.Text = "Add Now Setting";
             this.addNowBtn.UseVisualStyleBackColor = true;
             this.addNowBtn.Click += new System.EventHandler(this.addNowBtn_Click);
             // 
-            // label2
+            // 設定ToolStripMenuItem
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 12);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "IPAddress";
+            this.設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isConnectedAdapterOnly});
+            this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.設定ToolStripMenuItem.Text = "設定";
             // 
-            // ipaddrBox
+            // isConnectedAdapterOnly
             // 
-            this.ipaddrBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipaddrBox.Location = new System.Drawing.Point(96, 23);
-            this.ipaddrBox.Name = "ipaddrBox";
-            this.ipaddrBox.Size = new System.Drawing.Size(132, 19);
-            this.ipaddrBox.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 12);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "SubnetMask";
-            // 
-            // maskBox
-            // 
-            this.maskBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskBox.Location = new System.Drawing.Point(96, 48);
-            this.maskBox.Name = "maskBox";
-            this.maskBox.Size = new System.Drawing.Size(132, 19);
-            this.maskBox.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 12);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "DefaultGateway";
-            // 
-            // gatewayBox
-            // 
-            this.gatewayBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.gatewayBox.Location = new System.Drawing.Point(96, 73);
-            this.gatewayBox.Name = "gatewayBox";
-            this.gatewayBox.Size = new System.Drawing.Size(132, 19);
-            this.gatewayBox.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 101);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 12);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "DNS1";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 12);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "DNS2";
-            // 
-            // dns1Box
-            // 
-            this.dns1Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dns1Box.Location = new System.Drawing.Point(96, 98);
-            this.dns1Box.Name = "dns1Box";
-            this.dns1Box.Size = new System.Drawing.Size(132, 19);
-            this.dns1Box.TabIndex = 16;
-            // 
-            // dns2Box
-            // 
-            this.dns2Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dns2Box.Location = new System.Drawing.Point(96, 123);
-            this.dns2Box.Name = "dns2Box";
-            this.dns2Box.Size = new System.Drawing.Size(132, 19);
-            this.dns2Box.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(56, 152);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 12);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Name";
-            // 
-            // nameBox
-            // 
-            this.nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nameBox.Location = new System.Drawing.Point(96, 149);
-            this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(132, 19);
-            this.nameBox.TabIndex = 19;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 12);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "IPAddress:";
-            // 
-            // ipaddrView
-            // 
-            this.ipaddrView.AutoSize = true;
-            this.ipaddrView.Location = new System.Drawing.Point(79, 24);
-            this.ipaddrView.Name = "ipaddrView";
-            this.ipaddrView.Size = new System.Drawing.Size(83, 12);
-            this.ipaddrView.TabIndex = 1;
-            this.ipaddrView.Text = "255.255.255.255";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 46);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 12);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "SubnetMask:";
-            // 
-            // maskView
-            // 
-            this.maskView.AutoSize = true;
-            this.maskView.Location = new System.Drawing.Point(79, 46);
-            this.maskView.Name = "maskView";
-            this.maskView.Size = new System.Drawing.Size(83, 12);
-            this.maskView.TabIndex = 3;
-            this.maskView.Text = "255.255.255.255";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(22, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 12);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Gateway:";
-            // 
-            // gatewayView
-            // 
-            this.gatewayView.AutoSize = true;
-            this.gatewayView.Location = new System.Drawing.Point(79, 68);
-            this.gatewayView.Name = "gatewayView";
-            this.gatewayView.Size = new System.Drawing.Size(83, 12);
-            this.gatewayView.TabIndex = 5;
-            this.gatewayView.Text = "255.255.255.255";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(260, 24);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(36, 12);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "DNS1:";
-            // 
-            // dns1view
-            // 
-            this.dns1view.AutoSize = true;
-            this.dns1view.Location = new System.Drawing.Point(302, 24);
-            this.dns1view.Name = "dns1view";
-            this.dns1view.Size = new System.Drawing.Size(83, 12);
-            this.dns1view.TabIndex = 7;
-            this.dns1view.Text = "255.255.255.255";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(260, 46);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 12);
-            this.label16.TabIndex = 8;
-            this.label16.Text = "DNS2:";
-            // 
-            // dns2View
-            // 
-            this.dns2View.AutoSize = true;
-            this.dns2View.Location = new System.Drawing.Point(302, 46);
-            this.dns2View.Name = "dns2View";
-            this.dns2View.Size = new System.Drawing.Size(83, 12);
-            this.dns2View.TabIndex = 9;
-            this.dns2View.Text = "255.255.255.255";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(268, 68);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(28, 12);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "Mac:";
-            // 
-            // macView
-            // 
-            this.macView.AutoSize = true;
-            this.macView.Location = new System.Drawing.Point(302, 68);
-            this.macView.Name = "macView";
-            this.macView.Size = new System.Drawing.Size(99, 12);
-            this.macView.TabIndex = 11;
-            this.macView.Text = "FF:FF:FF:FF:FF:FF";
+            this.isConnectedAdapterOnly.CheckOnClick = true;
+            this.isConnectedAdapterOnly.Name = "isConnectedAdapterOnly";
+            this.isConnectedAdapterOnly.Size = new System.Drawing.Size(252, 22);
+            this.isConnectedAdapterOnly.Text = "接続されているアダプタのみ表示";
+            this.isConnectedAdapterOnly.Click += new System.EventHandler(this.isConnectedAdapterOnly_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 389);
+            this.ClientSize = new System.Drawing.Size(546, 454);
             this.Controls.Add(this.addNowBtn);
             this.Controls.Add(this.delBtn);
             this.Controls.Add(this.groupBox2);
@@ -455,7 +478,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(484, 428);
+            this.MinimumSize = new System.Drawing.Size(562, 492);
             this.Name = "Form1";
             this.Text = "EthSwitcher";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -509,6 +532,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label macView;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ToolStripMenuItem 設定ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isConnectedAdapterOnly;
     }
 }
 

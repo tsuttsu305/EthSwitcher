@@ -29,6 +29,17 @@ namespace EthSwitcher {
             return list;
         }
 
+        public List<String> GetConnectedAdapters() {
+            init();
+            List<String> list = new List<string>();
+            foreach (ManagementBaseObject nic in _nics) {
+                if ((bool) nic["IPEnabled"]) {
+                    list.Add((string) nic["Caption"]);
+                }
+            }
+            return list;
+        } 
+
         public String GetIPAddress(String adapter) {
             init();
             String ip = "NoIPAddress";

@@ -13,7 +13,8 @@ namespace EthSwitcher {
     public partial class Form1 : Form {
 
         private NetworkAdapterController _controller;
-        private List<String> _adapters; 
+        private List<String> _adapters;
+        private bool _onlyConnectedAdapter = true;
 
         public Form1() {
             InitializeComponent();
@@ -26,13 +27,15 @@ namespace EthSwitcher {
         private void Form1_Load(object sender, EventArgs e) {
             _controller = new NetworkAdapterController();
 
-            _adapters = _controller.GetAdapters();
+            _adapters = _controller.GetConnectedAdapters();
+            nicList.DataSource = _adapters;
 
             nicList.DropDownStyle = ComboBoxStyle.DropDownList;
-            nicList.DataSource = _adapters;
 
             settingList.DataSource = ConfigList.GetInstance().GetNames();
             settingList.DisplayMember = "Name";
+
+            isConnectedAdapterOnly.Checked = _onlyConnectedAdapter;
         }
 
         private void nicList_SelectedIndexChanged(object sender, EventArgs e) {
@@ -135,6 +138,18 @@ namespace EthSwitcher {
 
             ConfigList.GetInstance().Add(data);
             settingList.DataSource = ConfigList.GetInstance().GetNames();
+        }
+
+        private void isConnectedAdapterOnly_Click(object sender, EventArgs e) {
+            _onlyConnectedAdapter = isConnectedAdapterOnly.Checked;
+
+            if (_onlyConnectedAdapter) {
+                _adapters = _controller.GetConnectedAdapters();
+                nicList.DataSource = _adapters;
+            } else {
+                _adapters = _controller.GetAdapters();
+                nicList.DataSource = _adapters;
+            }
         }
     }
 }
