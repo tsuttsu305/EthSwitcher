@@ -27,6 +27,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isConnectedAdapterOnly = new System.Windows.Forms.ToolStripMenuItem();
             this.nicList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -60,8 +62,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.delBtn = new System.Windows.Forms.Button();
             this.addNowBtn = new System.Windows.Forms.Button();
-            this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.isConnectedAdapterOnly = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -101,9 +101,25 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.exitToolStripMenuItem.Text = "終了";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // 設定ToolStripMenuItem
+            // 
+            this.設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isConnectedAdapterOnly});
+            this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.設定ToolStripMenuItem.Text = "設定";
+            // 
+            // isConnectedAdapterOnly
+            // 
+            this.isConnectedAdapterOnly.CheckOnClick = true;
+            this.isConnectedAdapterOnly.Name = "isConnectedAdapterOnly";
+            this.isConnectedAdapterOnly.Size = new System.Drawing.Size(252, 22);
+            this.isConnectedAdapterOnly.Text = "接続されているアダプタのみ表示";
+            this.isConnectedAdapterOnly.Click += new System.EventHandler(this.isConnectedAdapterOnly_Click);
             // 
             // nicList
             // 
@@ -323,6 +339,7 @@
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(153, 21);
             this.nameBox.TabIndex = 19;
+            this.nameBox.Click += new System.EventHandler(this.box_Click);
             // 
             // label7
             // 
@@ -341,6 +358,7 @@
             this.dns2Box.Name = "dns2Box";
             this.dns2Box.Size = new System.Drawing.Size(153, 21);
             this.dns2Box.TabIndex = 17;
+            this.dns2Box.Click += new System.EventHandler(this.box_Click);
             // 
             // dns1Box
             // 
@@ -349,6 +367,7 @@
             this.dns1Box.Name = "dns1Box";
             this.dns1Box.Size = new System.Drawing.Size(153, 21);
             this.dns1Box.TabIndex = 16;
+            this.dns1Box.Click += new System.EventHandler(this.box_Click);
             // 
             // label6
             // 
@@ -377,6 +396,7 @@
             this.gatewayBox.Name = "gatewayBox";
             this.gatewayBox.Size = new System.Drawing.Size(153, 21);
             this.gatewayBox.TabIndex = 13;
+            this.gatewayBox.Click += new System.EventHandler(this.box_Click);
             // 
             // label4
             // 
@@ -395,6 +415,7 @@
             this.maskBox.Name = "maskBox";
             this.maskBox.Size = new System.Drawing.Size(153, 21);
             this.maskBox.TabIndex = 11;
+            this.maskBox.Click += new System.EventHandler(this.box_Click);
             // 
             // label3
             // 
@@ -413,6 +434,7 @@
             this.ipaddrBox.Name = "ipaddrBox";
             this.ipaddrBox.Size = new System.Drawing.Size(153, 21);
             this.ipaddrBox.TabIndex = 9;
+            this.ipaddrBox.Click += new System.EventHandler(this.box_Click);
             // 
             // label2
             // 
@@ -446,22 +468,6 @@
             this.addNowBtn.Text = "Add Now Setting";
             this.addNowBtn.UseVisualStyleBackColor = true;
             this.addNowBtn.Click += new System.EventHandler(this.addNowBtn_Click);
-            // 
-            // 設定ToolStripMenuItem
-            // 
-            this.設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.isConnectedAdapterOnly});
-            this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
-            this.設定ToolStripMenuItem.Text = "設定";
-            // 
-            // isConnectedAdapterOnly
-            // 
-            this.isConnectedAdapterOnly.CheckOnClick = true;
-            this.isConnectedAdapterOnly.Name = "isConnectedAdapterOnly";
-            this.isConnectedAdapterOnly.Size = new System.Drawing.Size(252, 22);
-            this.isConnectedAdapterOnly.Text = "接続されているアダプタのみ表示";
-            this.isConnectedAdapterOnly.Click += new System.EventHandler(this.isConnectedAdapterOnly_Click);
             // 
             // Form1
             // 

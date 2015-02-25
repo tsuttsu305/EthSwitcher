@@ -39,40 +39,23 @@ namespace EthSwitcher {
         }
 
         private void nicList_SelectedIndexChanged(object sender, EventArgs e) {
-            String nic = _adapters[nicList.SelectedIndex];
-
-            ipaddrView.Text = _controller.GetIPAddress(nic);
-            maskView.Text = _controller.GetSubnetMask(nic);
-            gatewayView.Text = _controller.GetGateway(nic);
-            String[] dns = _controller.GetDnsServers(nic);
-            dns1view.Text = dns[0];
-            dns2View.Text = dns[1];
-            macView.Text = _controller.GetMacAddress(nic);
+            AdapterStatusViewUpdate();
         }
 
         private void setNowBtn_Click(object sender, EventArgs e) {
             String nic = _adapters[nicList.SelectedIndex];
             try {
                 IPAddress address;
-                if (String.IsNullOrWhiteSpace(ipaddrBox.Text) || (IPAddress.TryParse(ipaddrBox.Text, out address))) {
-                    if (String.IsNullOrWhiteSpace(maskBox.Text) || IPAddress.TryParse(maskBox.Text, out address)) {
-                        if (String.IsNullOrWhiteSpace(gatewayBox.Text) ||
-                            (IPAddress.TryParse(gatewayBox.Text, out address))) {
-                            if (String.IsNullOrWhiteSpace(dns1Box.Text) ||
-                                (IPAddress.TryParse(dns1Box.Text, out address))) {
-                                if (String.IsNullOrWhiteSpace(dns2Box.Text) ||
-                                    (IPAddress.TryParse(dns2Box.Text, out address))) {
-                                    _controller.SetDNSServers(nic, new string[] { dns1Box.Text, dns2Box.Text });
-                                    _controller.SetIPAddress(nic, ipaddrBox.Text, maskBox.Text);
+                if (NetworkUtil.IsIPAddressFomat(ipaddrBox.Text, true)) {
+                    if (NetworkUtil.IsIPAddressFomat(maskBox.Text, true)) {
+                        if (NetworkUtil.IsIPAddressFomat(gatewayBox.Text, true)) {
+                            if (NetworkUtil.IsIPAddressFomat(dns1Box.Text, true)) {
+                                if (NetworkUtil.IsIPAddressFomat(dns2Box.Text, true)) {
+                                    _controller.SetDnsServers(nic, new[] { dns1Box.Text, dns2Box.Text });
+                                    _controller.SetIpAddress(nic, ipaddrBox.Text, maskBox.Text);
                                     _controller.SetGateway(nic, gatewayBox.Text);
 
-                                    ipaddrView.Text = _controller.GetIPAddress(nic);
-                                    maskView.Text = _controller.GetSubnetMask(nic);
-                                    gatewayView.Text = _controller.GetGateway(nic);
-                                    String[] dns = _controller.GetDnsServers(nic);
-                                    dns1view.Text = dns[0];
-                                    dns2View.Text = dns[1];
-                                    macView.Text = _controller.GetMacAddress(nic);
+                                    AdapterStatusViewUpdate();
                                 } else {
                                     MessageBox.Show("DNS2が不正です。");
                                 }
@@ -150,6 +133,24 @@ namespace EthSwitcher {
                 _adapters = _controller.GetAdapters();
                 nicList.DataSource = _adapters;
             }
+        }
+
+        private void box_Click(object sender, EventArgs e) {
+            var box = sender as TextBox;
+            if (box != null) {
+                box.SelectAll();
+            }
+        }
+
+        public void AdapterStatusViewUpdate() {
+            String nic = _adapters[nicList.SelectedIndex];
+            ipaddrView.Text = _controller.GetIPAddress(nic);
+            maskView.Text = _controller.GetSubnetMask(nic);
+            gatewayView.Text = _controller.GetGateway(nic);
+            String[] dns = _controller.GetDnsServers(nic);
+            dns1view.Text = dns[0];
+            dns2View.Text = dns[1];
+            macView.Text = _controller.GetMacAddress(nic);
         }
     }
 }

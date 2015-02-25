@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace EthSwitcher {
     public class NetworkAdapterController {
-
         private ManagementClass _managementClass;
         private ManagementObjectCollection _nics;
 
@@ -38,176 +37,144 @@ namespace EthSwitcher {
                 }
             }
             return list;
-        } 
+        }
 
         public String GetIPAddress(String adapter) {
             init();
             String ip = "NoIPAddress";
-            foreach (ManagementBaseObject nic in _nics) {
-                if (nic["Caption"].Equals(adapter)) {
-                    if ((bool) nic["IPEnabled"]) {
+
+            var nic = GetNetorkAdapter(adapter);
+
+                    if (nic != null && (bool) nic["IPEnabled"]) {
                         if ((bool) nic["DHCPEnabled"]) {
                             if (nic["IPAddress"] != null) {
-                                ip = "DHCP:" + ((String[])nic["IPAddress"])[0];
-                                break;
+                                ip = "DHCP:" + ((String[]) nic["IPAddress"])[0];
                             } else {
                                 ip = "DHCP";
-                                break;
                             }
                         } else if (nic["IPAddress"] != null) {
                             ip = ((String[]) nic["IPAddress"])[0];
-                            break;
                         }
                     } else {
                         ip = "IP Not Active";
                     }
-                }
-            }
             return ip;
         }
 
         public String GetSubnetMask(String adapter) {
             init();
-            String mask = "";
-            foreach (ManagementBaseObject nic in _nics) {
-                if (nic["Caption"].Equals(adapter)) {
-                    if ((bool)nic["IPEnabled"]) {
-                        if (nic["IPSubnet"] != null) {
-                            mask = ((String[]) nic["IPSubnet"])[0];
-                        }
-                    }
 
-                    break;
-                }
+            String mask = "";
+            var nic = GetNetorkAdapter(adapter);
+
+            if (nic != null && (bool) nic["IPEnabled"] && nic["IPSubnet"] != null) {
+                mask = ((String[]) nic["IPSubnet"])[0];
             }
+
             return mask;
         }
 
         public String GetGateway(String adapter) {
             init();
+
             String gw = "";
-            foreach (ManagementBaseObject nic in _nics) {
-                if (nic["Caption"].Equals(adapter)) {
-                    if ((bool)nic["IPEnabled"]) {
-                        if (nic["DefaultIPGateway"] != null) {
-                            gw = ((String[])nic["DefaultIPGateway"])[0];
-                        }
-                    }
-                    break;
-                }
+            var nic = GetNetorkAdapter(adapter);
+
+            if (nic != null && (bool) nic["IPEnabled"] && nic["DefaultIPGateway"] != null) {
+                gw = ((String[]) nic["DefaultIPGateway"])[0];
             }
+
             return gw;
         }
 
         public String[] GetDnsServers(String adapter) {
             init();
+
             String[] dns = {"", ""};
-            foreach (ManagementBaseObject nic in _nics) {
-                if (nic["Caption"].Equals(adapter)) {
-                    if ((bool)nic["IPEnabled"]) {
-                        if (nic["DNSServerSearchOrder"] != null) {
-                            String[] d = (string[]) nic["DNSServerSearchOrder"];
-                            dns[0] = d[0];
-                            if (d.Count() >= 2) {
-                                dns[1] = d[1];
-                            }
-                        }
-                    }
-                    break;
+            var nic = GetNetorkAdapter(adapter);
+
+            if (nic != null && (bool) nic["IPEnabled"] && nic["DNSServerSearchOrder"] != null) {
+                String[] d = (string[]) nic["DNSServerSearchOrder"];
+                dns[0] = d[0];
+                if (d.Count() >= 2) {
+                    dns[1] = d[1];
                 }
             }
+
             return dns;
         }
 
         public String GetMacAddress(String adapter) {
             init();
-            String mac = "";
-            foreach (ManagementBaseObject nic in _nics) {
-                if (nic["Caption"].Equals(adapter)) {
-                    mac = (string) nic["MACAddress"];
-                    break;
-                }
-            }
-            return mac;
+            var nic = GetNetorkAdapter(adapter);
+            return nic == null ? "" : (String)nic["MACAddress"];
         }
 
         /*Adapter Setting*/
-        public bool SetIPAddress(String adapter, String ip_address, String subnet_mask) {
+
+        public bool SetIpAddress(String adapter, String ip_address, String subnet_mask) {
             init();
+
+            var nic = GetNetorkAdapter(adapter);
+            if (nic == null) return false;
+
+            ManagementBaseObject code;
+
             if (String.IsNullOrWhiteSpace(ip_address) || String.IsNullOrWhiteSpace(subnet_mask)) {
-                foreach (var o in _nics) {
-                    var nic = (ManagementObject) o;
-                    if (nic["Caption"].Equals(adapter)) {
-                        nic.InvokeMethod("EnableDHCP", null, null);
-                        return false;
-                    }
-                }
-                return true;
+                code = nic.InvokeMethod("EnableDHCP", null, null);
             } else {
-                foreach (var o in _nics) {
-                    var nic = (ManagementObject) o;
-                    if (nic["Caption"].Equals(adapter)) {
-                        var newIP = nic.GetMethodParameters("EnableStatic");
+                var newIp = nic.GetMethodParameters("EnableStatic");
 
-                        newIP["IPAddress"] = new[] {ip_address};
-                        newIP["SubnetMask"] = new[] {subnet_mask};
+                newIp["IPAddress"] = new[] {ip_address};
+                newIp["SubnetMask"] = new[] {subnet_mask};
 
-                        nic.InvokeMethod("EnableStatic", newIP, null);
-                        return true;
-                    }
-                }
+                code = nic.InvokeMethod("EnableStatic", newIp, null);
             }
-            return false;
+            return code != null && ((uint)code["ReturnValue"]) != 0;
         }
 
         public bool SetGateway(String adapter, String gateway) {
             init();
-            if (String.IsNullOrWhiteSpace(gateway)) {
-                gateway = null;
-            }
-            foreach (var o in _nics) {
-                var nic = (ManagementObject) o;
-                if (nic["Caption"].Equals(adapter)) {
-                    var newGateway = nic.GetMethodParameters("SetGateways");
-                    if (gateway != null) {
-                        newGateway["DefaultIPGateway"] = new[] {gateway};
-                        newGateway["GatewayCostMetric"] = new[] {1};
-                    } else
-                    {
-                        newGateway = null;
-                    }
 
-                    nic.InvokeMethod("SetGateways", newGateway, null);
-                    return true;
-                }
+            var nic = GetNetorkAdapter(adapter);
+            if (nic == null) return false;
+
+            var newGateway = nic.GetMethodParameters("SetGateways");
+
+            if (String.IsNullOrWhiteSpace(gateway)) {
+                newGateway = null;
+            } else {
+                newGateway["DefaultIPGateway"] = new[] {gateway};
+                newGateway["GatewayCostMetric"] = new[] {1};
             }
-            return false;
+
+            var code = nic.InvokeMethod("SetGateways", newGateway, null);
+            return code != null && ((uint) code["ReturnValue"]) != 0;
         }
 
-        public bool SetDNSServers(String adapter, String[] dnsservers) {
+        public bool SetDnsServers(String adapter, String[] dnsservers) {
             init();
+
+            var nic = GetNetorkAdapter(adapter);
+            if (nic == null) return false;
+
+            var newDns = nic.GetMethodParameters("SetDNSServerSearchOrder");
+
             if (String.IsNullOrWhiteSpace(dnsservers[0])) {
-                dnsservers = null;
-            } else if(String.IsNullOrWhiteSpace(dnsservers[1])) {
-                dnsservers = new[] {dnsservers[0]};
+                newDns["DNSServerSearchOrder"] = new string[] {};
+            } else if (String.IsNullOrWhiteSpace(dnsservers[1])) {
+                newDns["DNSServerSearchOrder"] = new[] {dnsservers[0]};
+            } else {
+                newDns["DNSServerSearchOrder"] = dnsservers;
             }
 
-            foreach (var o in _nics) {
-                var nic = (ManagementObject) o;
-                if (nic["Caption"].Equals(adapter)) {
-                    var newDNS = nic.GetMethodParameters("SetDNSServerSearchOrder");
+            var code = nic.InvokeMethod("SetDNSServerSearchOrder", newDns, null);
 
-                    if (dnsservers != null) {
-                        newDNS["DNSServerSearchOrder"] = dnsservers;
-                    } else {
-                        newDNS["DNSServerSearchOrder"] = new string[]{};
-                    }
+            return code != null && ((uint) code["ReturnValue"]) == 0;
+        }
 
-                    nic.InvokeMethod("SetDNSServerSearchOrder", newDNS, null);
-                    return true;
-                }
-            }
-            return false;
+        public ManagementObject GetNetorkAdapter(String caption) {
+            return _nics.Cast<ManagementObject>().FirstOrDefault(o => o["Caption"].Equals(caption));
         }
     }
 }
