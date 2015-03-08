@@ -152,5 +152,101 @@ namespace EthSwitcher {
             dns2View.Text = dns[1];
             macView.Text = _controller.GetMacAddress(nic);
         }
+
+
+        private class NotifyItem : ToolStripMenuItem {
+            public NotifyItem(string text) : base(text) {
+            }
+
+            public int Id { get; set; }
+            public string Nic { get; set; }
+        }
+
+
+        private void notifyIcon1_Click(object sender, EventArgs e) {
+            System.Windows.Forms.ContextMenuStrip contextMenu = new ContextMenuStrip();
+
+
+            var item1 = new ToolStripMenuItem("メイン画面を開く");
+            item1.Click += notifyIcon1_MouseDoubleClick;
+
+            var sepator = new ToolStripSeparator();
+
+            foreach (string adapter in _adapters) {
+                var it = new ToolStripMenuItem(adapter);
+                for (int i = 0; i < ConfigList.GetInstance().GetNames().Length; i++) {
+                    string name = ConfigList.GetInstance().GetNames()[i];
+                    var ni = new NotifyItem(name) {Id = i,Nic = adapter};
+                    ni.Click += DropDownClick;
+                    it.DropDownItems.Add(ni);
+                }
+                contextMenu.Items.Add(it);
+            }
+
+            contextMenu.Items.Add(sepator);
+            contextMenu.Items.Add(item1);
+
+            notifyIcon1.ContextMenuStrip = contextMenu;
+        }
+
+        private void DropDownClick(object sender, EventArgs e) {
+            var item = (NotifyItem) sender;
+
+            var cfg = ConfigList.GetInstance().GetItem(item.Id);
+            var nic = item.Nic;
+            try {
+                IPAddress address;
+                if (NetworkUtil.IsIPAddressFomat(cfg.IpAddress, true)) {
+                    if (NetworkUtil.IsIPAddressFomat(cfg.Subnet, true)) {
+                        if (NetworkUtil.IsIPAddressFomat(cfg.Gateway, true)) {
+                            if (NetworkUtil.IsIPAddressFomat(cfg.Dns1, true)) {
+                                if (NetworkUtil.IsIPAddressFomat(cfg.Dns2, true)) {
+                                    _controller.SetDnsServers(nic, new[] { dns1Box.Text, dns2Box.Text });
+                                    _controller.SetIpAddress(nic, ipaddrBox.Text, maskBox.Text);
+                                    _controller.SetGateway(nic, gatewayBox.Text);
+
+                                    AdapterStatusViewUpdate();
+
+                                    notifyIcon1.BalloonTipTitle = "Success";
+                                    String[] dns = _controller.GetDnsServers(nic);
+                                    notifyIcon1.BalloonTipText = 
+                                        "NIC: " + nic + 
+                                        "\nIPAddr: " + _controller.GetIPAddress(nic) + 
+                                        "\nMask: " + _controller.GetSubnetMask(nic) + 
+                                        "\nGW: " + _controller.GetGateway(nic) +
+                                        "\nDNS1: " + dns[0] + "\nDNS2: " + dns[1];
+                                    notifyIcon1.ShowBalloonTip(10);
+                                } else {
+                                    MessageBox.Show("DNS2が不正です。");
+                                }
+                            } else {
+                                MessageBox.Show("DNS1が不正です。");
+                            }
+                        } else {
+                            MessageBox.Show("Gatewayが不正です。");
+                        }
+                    } else {
+                        MessageBox.Show("SubnetMaskが不正です。");
+                    }
+                } else {
+                    MessageBox.Show("IPアドレスが不正です。");
+                }
+            } catch (Exception) {
+                MessageBox.Show("未知のエラーが発生しました");
+            }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e) {
+            if (this.WindowState == FormWindowState.Minimized) {
+                this.Visible = false;
+                notifyIcon1.Visible = true;
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, EventArgs e) {
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon1.Visible = false;
+        }
     }
 }
